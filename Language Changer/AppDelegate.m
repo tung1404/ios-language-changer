@@ -23,6 +23,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     
+    /*
+     * Check the user defaults to find whether a localisation has been set before.
+     * If it hasn't been set, (i.e. first run of the app), select the locale based
+     * on the device locale setting.
+     */
+    
     // Check whether the language code has already been set.
     if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
         

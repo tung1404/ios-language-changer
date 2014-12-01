@@ -39,6 +39,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    // Scroll back to the top of the text.
     self.textView.contentOffset = CGPointZero;
 }
 
@@ -49,6 +50,15 @@
 
 #pragma mark - Localisation
 
+/*!
+ * @function setupLocalisableElements
+ *
+ * @abstract
+ * Update the strings and images in the view depending on the currently selected localisation.
+ *
+ * @discussion
+ * Should be called whenever the localisation is set.
+ */
 - (void)setupLocalisableElements {
     
     self.title = CustomLocalisedString(@"Title", @"The string to display in the navigation bar.");
@@ -56,6 +66,7 @@
     self.textView.text = CustomLocalisedString(@"Text", @"The string to display in the text view.");
     self.textView.contentOffset = CGPointZero;
     
+    // Flag images are named after the country code of the Localisation.
     UIImage *flagImage = [UIImage imageNamed:[[LanguageManager sharedLanguageManager] getSelectedLocalisation].countryCode];
     [self.flagImageView setImage:flagImage];
 }
@@ -82,6 +93,10 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    /*
+     * Set the localisation that the user has just picked.
+     */
     
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     
