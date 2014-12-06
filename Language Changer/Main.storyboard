@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="L6L-TN-nQL"/>
                     <connections>
                         <outlet property="flagImageView" destination="Kdy-6d-AN9" id="Fsi-e8-3nT"/>
-                        <outlet property="localisationPicker" destination="g8B-qE-dJp" id="oSm-TH-pW9"/>
+                        <outlet property="localePicker" destination="g8B-qE-dJp" id="cyS-V2-TxZ"/>
                         <outlet property="textView" destination="TUM-IB-KKe" id="pUa-fN-CJD"/>
                     </connections>
                 </viewController>

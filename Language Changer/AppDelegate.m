@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "LanguageManager.h"
-#import "Localisation.h"
+#import "Locale.h"
 
 @interface AppDelegate ()
 
@@ -37,11 +37,11 @@
         NSLocale *currentLocale = [NSLocale currentLocale];
         
         // Iterate through available localisations to find the matching one for the device locale.
-        for (Localisation *localisation in languageManager.availableLocalisations) {
+        for (Locale *localisation in languageManager.availableLocales) {
             
             if ([localisation.languageCode caseInsensitiveCompare:[currentLocale objectForKey:NSLocaleLanguageCode]] == NSOrderedSame) {
                 
-                [languageManager setLanguageWithLocalisation:localisation];
+                [languageManager setLanguageWithLocale:localisation];
                 break;
             }
         }
@@ -50,7 +50,7 @@
         if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
             
             NSLog(@"Couldn't find the right localisation - using default.");
-            [languageManager setLanguageWithLocalisation:languageManager.availableLocalisations[0]];
+            [languageManager setLanguageWithLocale:languageManager.availableLocales[0]];
         }
     }
     else {

@@ -10,15 +10,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class Localisation;
+@class Locale;
 
 @interface LanguageManager : NSObject
 
-@property (nonatomic, copy) NSArray *availableLocalisations;
+@property (nonatomic, copy) NSArray *availableLocales;
 
 + (LanguageManager *)sharedLanguageManager;
-- (void)setLanguageWithLocalisation:(Localisation *)localisation;
-- (Localisation *)getSelectedLocalisation;
+- (void)setLanguageWithLocale:(Locale *)locale;
+- (Locale *)getSelectedLocale;
 - (NSString *)getTranslationForKey:(NSString *)key;
 
 @end

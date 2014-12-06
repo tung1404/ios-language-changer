@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UIPickerView *localisationPicker;
+@property (nonatomic, weak) IBOutlet UIPickerView *localePicker;
 @property (nonatomic, weak) IBOutlet UIImageView *flagImageView;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 

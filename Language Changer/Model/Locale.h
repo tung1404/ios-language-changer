@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Localisation : NSObject
+@interface Locale : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *languageCode;

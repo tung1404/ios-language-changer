@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "LanguageManager.h"
-#import "Localisation.h"
+#import "Locale.h"
 #import "Constants.h"
 
 @interface ViewController ()
@@ -27,12 +27,12 @@
     
     NSInteger selectedIndex = 0;
     
-    Localisation *selectedLocalisation = [languageManager getSelectedLocalisation];
+    Locale *selectedLocale = [languageManager getSelectedLocale];
     
-    selectedIndex = [languageManager.availableLocalisations indexOfObject:selectedLocalisation];
+    selectedIndex = [languageManager.availableLocales indexOfObject:selectedLocale];
     
     // Move the picker to match what was selected previously.
-    [self.localisationPicker selectRow:selectedIndex inComponent:0 animated:YES];
+    [self.localePicker selectRow:selectedIndex inComponent:0 animated:YES];
     
     [self setupLocalisableElements];
 }
@@ -67,7 +67,7 @@
     self.textView.contentOffset = CGPointZero;
     
     // Flag images are named after the country code of the Localisation.
-    UIImage *flagImage = [UIImage imageNamed:[[LanguageManager sharedLanguageManager] getSelectedLocalisation].countryCode];
+    UIImage *flagImage = [UIImage imageNamed:[[LanguageManager sharedLanguageManager] getSelectedLocale].countryCode];
     [self.flagImageView setImage:flagImage];
 }
 
@@ -80,16 +80,16 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-    return [LanguageManager sharedLanguageManager].availableLocalisations.count;
+    return [LanguageManager sharedLanguageManager].availableLocales.count;
 }
 
 #pragma mark - UIPickerViewDelegate
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    Localisation *localisationForRow = [LanguageManager sharedLanguageManager].availableLocalisations[row];
+    Locale *localeForRow = [LanguageManager sharedLanguageManager].availableLocales[row];
     
-    return localisationForRow.name;
+    return localeForRow.name;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -100,11 +100,11 @@
     
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     
-    Localisation *localisationForRow = languageManager.availableLocalisations[row];
+    Locale *localeForRow = languageManager.availableLocales[row];
     
-    NSLog(@"Language selected: %@", localisationForRow.name);
+    NSLog(@"Language selected: %@", localeForRow.name);
     
-    [languageManager setLanguageWithLocalisation:localisationForRow];
+    [languageManager setLanguageWithLocale:localeForRow];
     
     [self setupLocalisableElements];
 }

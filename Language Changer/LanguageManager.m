@@ -9,7 +9,7 @@
 //
 
 #import "LanguageManager.h"
-#import "Localisation.h"
+#import "Locale.h"
 #import "Constants.h"
 
 @implementation LanguageManager
@@ -29,13 +29,13 @@
     if (self = [super init]) {
         
         // Manually create a list of available localisations for this example project.
-        Localisation *english = [[Localisation alloc] initWithLanguageCode:@"en" countryCode:@"gb" name:@"United Kingdom"];
-        Localisation *french = [[Localisation alloc] initWithLanguageCode:@"fr" countryCode:@"fr" name:@"France"];
-        Localisation *german = [[Localisation alloc] initWithLanguageCode:@"de" countryCode:@"de" name:@"Deutschland"];
-        Localisation *italian = [[Localisation alloc] initWithLanguageCode:@"it" countryCode:@"it" name:@"Italia"];
-        Localisation *japanese = [[Localisation alloc] initWithLanguageCode:@"ja" countryCode:@"jp" name:@"日本"];
+        Locale *english = [[Locale alloc] initWithLanguageCode:@"en" countryCode:@"gb" name:@"United Kingdom"];
+        Locale *french = [[Locale alloc] initWithLanguageCode:@"fr" countryCode:@"fr" name:@"France"];
+        Locale *german = [[Locale alloc] initWithLanguageCode:@"de" countryCode:@"de" name:@"Deutschland"];
+        Locale *italian = [[Locale alloc] initWithLanguageCode:@"it" countryCode:@"it" name:@"Italia"];
+        Locale *japanese = [[Locale alloc] initWithLanguageCode:@"ja" countryCode:@"jp" name:@"日本"];
         
-        self.availableLocalisations = @[english, french, german, italian, japanese];
+        self.availableLocales = @[english, french, german, italian, japanese];
     }
     
     return self;
@@ -52,9 +52,9 @@
  * @param localisation
  * The localisation object whose language code we are storing in the user defaults.
  */
-- (void)setLanguageWithLocalisation:(Localisation *)localisation {
+- (void)setLanguageWithLocale:(Locale *)locale {
     
-    [[NSUserDefaults standardUserDefaults] setObject:localisation.languageCode forKey:DEFAULTS_KEY_LANGUAGE_CODE];
+    [[NSUserDefaults standardUserDefaults] setObject:locale.languageCode forKey:DEFAULTS_KEY_LANGUAGE_CODE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -71,24 +71,24 @@
  * @discussion
  * Returns nil if a language code has not been set in the user defaults.
  */
-- (Localisation *)getSelectedLocalisation {
+- (Locale *)getSelectedLocale {
     
-    Localisation *selectedLocalisation = nil;
+    Locale *selectedLocale = nil;
     
     // Get the language code.
     NSString *languageCode = [[[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE] lowercaseString];
     
     // Iterate through available localisations to find the one that matches languageCode.
-    for (Localisation *localisation in self.availableLocalisations) {
+    for (Locale *locale in self.availableLocales) {
         
-        if ([localisation.languageCode caseInsensitiveCompare:languageCode] == NSOrderedSame) {
+        if ([locale.languageCode caseInsensitiveCompare:languageCode] == NSOrderedSame) {
             
-            selectedLocalisation = localisation;
+            selectedLocale = locale;
             break;
         }
     }
     
-    return selectedLocalisation;
+    return selectedLocale;
 }
 
 /*!

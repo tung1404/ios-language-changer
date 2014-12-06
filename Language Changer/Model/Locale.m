@@ -8,9 +8,9 @@
 //  Object representing a locale, containing a language code, country code and name.
 //
 
-#import "Localisation.h"
+#import "Locale.h"
 
-@implementation Localisation
+@implementation Locale
 
 - (id)initWithLanguageCode:(NSString *)languageCode countryCode:(NSString *)countryCode name:(NSString *)name {
     
