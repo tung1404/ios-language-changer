@@ -1,4 +1,7 @@
 ios-language-changer
+
+http://createdineden.com/blog/post/language-changer-in-app-language-selection-in-ios/
+
 ====================
 
 iOS language changer example app
